@@ -1,15 +1,14 @@
 import axios from "axios";
-import { mockAPI, paginParams } from "../API";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = mockAPI;
-axios.defaults.params = paginParams;
+axios.defaults.baseURL = 'https://66c73a9d732bf1b79fa5d101.mockapi.io/';
+axios.defaults.params = { page: 1, limit: 12 };
 
 export const fetchRentCarsThunk = createAsyncThunk(
-    'cars/fetchRentCars',
+    'cars/fetchCarsList',
     async (_, thunkAPI) => {
         try {
-            const { data } = await axios.get('advert');
+            const { data } = await axios.get('adverts');
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -25,7 +24,6 @@ export const loadMoreRentCarsThunk = createAsyncThunk(
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
-
         }
     }
 )
