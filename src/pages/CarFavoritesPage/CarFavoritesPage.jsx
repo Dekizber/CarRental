@@ -1,9 +1,24 @@
-import React from 'react'
+import CatalogItem from "../../components/CatalogItem/CatalogItem";
+import { useSelector } from "react-redux";
+import { selectFavoriteItems } from "../../redux/selectors";
 
 const CarFavoritesPage = () => {
-  return (
-    <div>CarFavoritesPage</div>
-  )
-}
+  const favoriteItems = useSelector(selectFavoriteItems);
 
-export default CarFavoritesPage
+  return (
+    <div>
+      <h1>Favorite rentals</h1>
+      <ul>
+        {favoriteItems.map((car) => {
+          return (
+            <li key={car.id}>
+              <CatalogItem car={car} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+export default CarFavoritesPage;

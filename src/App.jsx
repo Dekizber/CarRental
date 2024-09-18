@@ -7,14 +7,14 @@ import CarFavoritesPage from "./pages/CarFavoritesPage/CarFavoritesPage";
 CarFavoritesPage;
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
         <Route path="/catalog" element={<CarCatalogPage />} />
         <Route path="/favorites" element={<CarFavoritesPage />} />
-        <Route path="*" element={<Navigate to={"/"} />} />
-      </Routes>
-    </Layout>
+      </Route>
+      <Route path="*" element={<Navigate to={"/"} />} />
+    </Routes>
   );
 }
 

@@ -1,14 +1,17 @@
 import { Suspense } from "react";
 import { PacmanLoader } from "react-spinners";
 import { AppBar } from "../AppBar/AppBar";
+import { Outlet } from "react-router-dom";
 
-export const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div>
       <AppBar />
       <Suspense fallback={<PacmanLoader color="#ffd600" />}>
-        {children}
+        <Outlet />
       </Suspense>
     </div>
   );
 };
+
+export default Layout;

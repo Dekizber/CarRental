@@ -20,7 +20,7 @@ export const loadMoreRentCarsThunk = createAsyncThunk(
     'cars/loadMoreCars',
     async (page, thunkAPI) => {
         try {
-            const { data } = await axios.get('advert', { params: { page } })
+            const { data } = await axios.get('adverts', { params: { page } })
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

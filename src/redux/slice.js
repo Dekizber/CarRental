@@ -9,18 +9,19 @@ const initialState = {
     isError: false,
 };
 
+
 export const carsSlice = createSlice({
     name: 'cars',
     initialState,
     reducers: {
-        handleFavorite: (state, action) => {
-            const itemID = action.payload;
-            const index = state.favoriteItems.indexOf(itemID);
-            index > -1 ? state.favoriteItems.splice(index, 1) : state.favoriteItems.push(itemID);
-        },
         carFilter: (state, action) => {
             const { make } = action.payload;
             make ? state.filteredItems = state.items.filter(car => car.make.toLowerCase() === make.toLowerCase()) : state.filteredItems = state.items;
+        },
+        handleFavorite: (state, action) => {
+            const itemIdx = state.favoriteItems.findIndex((item) => item.id === action.payload.id);
+            if (itemIdx !== -1) { state.favoriteItems.splice(itemIdx, 1) }
+            else { state.favoriteItems.push(action.payload) };
         }
     },
 
@@ -33,7 +34,7 @@ export const carsSlice = createSlice({
             })
             .addCase(loadMoreRentCarsThunk.fulfilled, (state, action) => {
                 state.items = [...state.items, ...action.payload];
-                state.filteredItems = [...action.payload];
+                state.filteredItems = [...state.items, ...action.payload];
             })
             .addMatcher(
                 isAnyOf(fetchRentCarsThunk.pending, loadMoreRentCarsThunk.pending),
