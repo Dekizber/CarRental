@@ -6,7 +6,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { handleFavorite } from "../../redux/slice";
 import { selectFavoriteItems } from "../../redux/selectors";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-
+import s from "./CarModal.module.css";
 ReactModal.setAppElement("#root");
 
 const modalStyle = {
@@ -14,6 +14,7 @@ const modalStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   content: {
+    padding: "40px",
     width: "541px",
     height: "auto",
     top: "50%",
@@ -39,60 +40,66 @@ const CarModal = () => {
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
-
+  const formatMileage = (mileage) => {
+    return mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   return (
-    <ReactModal
-      isOpen={isModalOpen}
-      onRequestClose={handleCloseModal}
-      style={modalStyle}
-      ariaHideApp={false}
-    >
-      <button onClick={handleCloseModal}>
-        <IoCloseSharp />
-      </button>
-      <img
-        src={selectedCar.img}
-        alt={`${selectedCar.make} ${selectedCar.model}`}
-      />
-      <button type="button" onClick={handleAddFavorite}>
-        {isFavorite ? <FaHeart /> : <FaRegHeart />}
-      </button>
-      <h3>
-        {selectedCar.make} {selectedCar.model}, {selectedCar.year}
-      </h3>
-      <p>
-        {selectedCar.address} | Id: {selectedCar.id} | Year: {selectedCar.year}{" "}
-        | Type: {selectedCar.type} <br /> Fuel Consumption:{" "}
-        {selectedCar.fuelConsumption} | Engine size: {selectedCar.engineSize}
-      </p>
-      <p>{selectedCar.description}</p>
-      <p>Accessories and functionalities:</p>
-      <p>
-        {[...selectedCar.accessories.join(" | ")]}
-        <br />
-        {[...selectedCar.functionalities.join(" | ")]}
-      </p>
-      <p>Rental Conditions:</p>
-      <div>
-        {selectedCar.rentalConditions.split("\n").map((condition, index) => (
-          <div key={index}>
-            {condition
-              .split("")
-              .map((part, i) => (i === 1 ? <span key={i}>{part}</span> : part))}
-          </div>
-        ))}
+    <div className={s.modalContainer}>
+      <ReactModal
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+        style={modalStyle}
+        ariaHideApp={false}
+      >
+        <button className={s.closeButton} onClick={handleCloseModal}>
+          <IoCloseSharp className={s.closeIcon} />
+        </button>
+        <img
+          src={selectedCar.img}
+          alt={`${selectedCar.make} ${selectedCar.model}`}
+        />
+        <button type="button" onClick={handleAddFavorite}>
+          {isFavorite ? <FaHeart /> : <FaRegHeart />}
+        </button>
+        <h3>
+          {selectedCar.make} {selectedCar.model}, {selectedCar.year}
+        </h3>
         <p>
-          Mileage: <span>{selectedCar.mileage}</span>
+          {selectedCar.address} | Id: {selectedCar.id} | Year:{" "}
+          {selectedCar.year} | Type: {selectedCar.type} <br /> Fuel Consumption:{" "}
+          {selectedCar.fuelConsumption} | Engine size: {selectedCar.engineSize}
         </p>
+        <p>{selectedCar.description}</p>
+        <p>Accessories and functionalities:</p>
         <p>
-          Price: <span>{selectedCar.rentalPrice}</span>
+          {[...selectedCar.accessories.join(" | ")]}
+          <br />
+          {[...selectedCar.functionalities.join(" | ")]}
         </p>
-      </div>
+        <p>Rental Conditions:</p>
+        <div>
+          {selectedCar.rentalConditions.split("\n").map((condition, index) => (
+            <div key={index}>
+              {condition
+                .split("")
+                .map((part, i) =>
+                  i === 1 ? <span key={i}>{part}</span> : part
+                )}
+            </div>
+          ))}
+          <p>
+            Mileage: <span>{formatMileage(selectedCar.mileage)}</span>
+          </p>
+          <p>
+            Price: <span>{selectedCar.rentalPrice}</span>
+          </p>
+        </div>
 
-      <button>
-        <a href="tel:+380730000000">Rental car</a>
-      </button>
-    </ReactModal>
+        <button>
+          <a href="tel:+380730000000">Rental car</a>
+        </button>
+      </ReactModal>
+    </div>
   );
 };
 

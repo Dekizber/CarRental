@@ -1,0 +1,15 @@
+.modalContainer {
+  position: relative;
+  padding: 0px;
+}
+.closeButton {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 8px;
+  top: 16px;
+}
+.closeIcon {
+  width: 24px;
+  height: 24px;
+}

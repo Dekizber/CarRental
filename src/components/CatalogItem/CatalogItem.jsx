@@ -15,6 +15,10 @@ const CatalogItem = ({ car }) => {
     dispatch(openModal(car));
   };
 
+  const formatMileage = (mileage) => {
+    return mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const isFavorite = useSelector(selectFavoriteItems).find(
     (item) => item.id === car.id
   );
@@ -31,8 +35,8 @@ const CatalogItem = ({ car }) => {
       <div>
         <p>
           {car.address.split(", ")[1]} | {car.address.split(", ")[2]} |{" "}
-          {car.rentalCompany} | {car.type} | {car.model} | {car.mileage} |{" "}
-          {car.functionalities?.[1]}
+          {car.rentalCompany} | {car.type} | {car.model} |{" "}
+          {formatMileage(car.mileage)} | {car.functionalities?.[1]}
         </p>
       </div>
       <button type="button" onClick={handleOpenModal}>

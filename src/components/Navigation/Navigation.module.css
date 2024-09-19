@@ -1,0 +1,14 @@
+.navContainer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.NavLink {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.NavLink:hover {
+  color: red;
+}
