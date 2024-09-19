@@ -7,8 +7,11 @@ import { makeList } from "../../makes_prices";
 const DropFilter = () => {
   const dispatch = useDispatch();
   const [make, setMake] = useState(null);
-  const handleConfirmFilter = () => {
+  const handleSearch = () => {
     dispatch(carFilter({ make: make?.value }));
+  };
+  const handleReset = () => {
+    dispatch(carFilter({ make: null }));
   };
 
   return (
@@ -18,8 +21,11 @@ const DropFilter = () => {
         onChange={setMake}
         placeholder="Select car"
       />
-      <button type="button" onClick={handleConfirmFilter}>
-        Confirm
+      <button type="button" onClick={handleSearch}>
+        Search
+      </button>
+      <button type="button" onClick={handleReset}>
+        Reset
       </button>
     </div>
   );

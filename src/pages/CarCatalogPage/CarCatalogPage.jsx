@@ -5,10 +5,13 @@ import { useState } from "react";
 import { loadMoreRentCarsThunk } from "../../redux/operations";
 import DropFilter from "../../components/DropFilter/DropFilter";
 import Catalog from "../../components/Catalog/Catalog";
+import CarModal from "../../components/CarModal/CarModal";
+import { selectIsModalOpen } from "../../redux/modal/selectorsModal";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectCars);
+  const modalStatus = useSelector(selectIsModalOpen);
   const [page, setPage] = useState(1);
   const isLoading = useSelector(selectIsLoading);
   const perPage = 12;
@@ -34,6 +37,7 @@ const CarCatalogPage = () => {
       ) : (
         <button onClick={buttonLoadMore}>Load more</button>
       )}
+      {modalStatus && <CarModal />}
     </div>
   );
 };

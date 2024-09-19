@@ -1,9 +1,12 @@
 import CatalogItem from "../../components/CatalogItem/CatalogItem";
 import { useSelector } from "react-redux";
 import { selectFavoriteItems } from "../../redux/selectors";
+import CarModal from "../../components/CarModal/CarModal";
+import { selectIsModalOpen } from "../../redux/modal/selectorsModal";
 
 const CarFavoritesPage = () => {
   const favoriteItems = useSelector(selectFavoriteItems);
+  const modalStatus = useSelector(selectIsModalOpen);
 
   return (
     <div>
@@ -17,6 +20,7 @@ const CarFavoritesPage = () => {
           );
         })}
       </ul>
+      {modalStatus && <CarModal />}
     </div>
   );
 };
