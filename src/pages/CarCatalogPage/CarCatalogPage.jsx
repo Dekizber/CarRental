@@ -7,6 +7,7 @@ import DropFilter from "../../components/DropFilter/DropFilter";
 import Catalog from "../../components/Catalog/Catalog";
 import CarModal from "../../components/CarModal/CarModal";
 import { selectIsModalOpen } from "../../redux/modal/selectorsModal";
+import s from "./CarCatalogPage.module.css";
 
 const CarCatalogPage = () => {
   const dispatch = useDispatch();
@@ -28,16 +29,21 @@ const CarCatalogPage = () => {
   };
 
   return (
-    <div>
+    <div className={s.carPageWrapper}>
       <DropFilter />
-      <Catalog />
-      {isLoading && <PacmanLoader color="#ffd600" />}
+      <div className={s.catalogContainer}>
+        <Catalog />
+        {isLoading && <PacmanLoader color="#ffd600" />}
+
+        {modalStatus && <CarModal />}
+      </div>
       {lastPageFilter ? (
         <p>Sorry, no more cars to show you!</p>
       ) : (
-        <button onClick={buttonLoadMore}>Load more</button>
+        <button className={s.loadMoreBtn} onClick={buttonLoadMore}>
+          Load more
+        </button>
       )}
-      {modalStatus && <CarModal />}
     </div>
   );
 };

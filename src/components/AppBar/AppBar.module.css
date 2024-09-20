@@ -1,1 +1,13 @@
-
+.headerNav {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heading {
+  font-family: "Unlock", system-ui;
+  font-weight: 600;
+  font-size: 50px;
+  padding: 16px;
+}

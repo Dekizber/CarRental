@@ -1,8 +1,9 @@
+import Select from "react-select";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { carFilter } from "../../redux/slice";
-import Dropdown from "react-dropdown";
 import { makeList } from "../../makes_prices";
+import s from "./DropFilter.module.css";
 
 const DropFilter = () => {
   const dispatch = useDispatch();
@@ -11,20 +12,24 @@ const DropFilter = () => {
     dispatch(carFilter({ make: make?.value }));
   };
   const handleReset = () => {
+    setMake(null);
     dispatch(carFilter({ make: null }));
   };
 
   return (
-    <div>
-      <Dropdown
+    <div className={s.dropMenu}>
+      <Select
+        className={s.dropDown}
         options={makeList}
         onChange={setMake}
+        value={make}
         placeholder="Select car"
+        classNamePrefix="dropSelector"
       />
-      <button type="button" onClick={handleSearch}>
+      <button className={s.searchBtn} type="button" onClick={handleSearch}>
         Search
       </button>
-      <button type="button" onClick={handleReset}>
+      <button className={s.resetBtn} type="button" onClick={handleReset}>
         Reset
       </button>
     </div>

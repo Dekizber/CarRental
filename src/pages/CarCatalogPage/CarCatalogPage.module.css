@@ -1,0 +1,14 @@
+.carPageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+}
+
+.catalogContainer {
+}
+.loadMoreBtn {
+  margin-bottom: 20px;
+}

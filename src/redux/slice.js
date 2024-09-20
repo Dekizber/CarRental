@@ -33,8 +33,8 @@ export const carsSlice = createSlice({
                 state.filteredItems = action.payload;
             })
             .addCase(loadMoreRentCarsThunk.fulfilled, (state, action) => {
-                state.items = [...state.items, ...action.payload];
-                state.filteredItems = [...state.items, ...action.payload];
+                state.items.push(...action.payload);
+                state.filteredItems.push(...action.payload);
             })
             .addMatcher(
                 isAnyOf(fetchRentCarsThunk.pending, loadMoreRentCarsThunk.pending),

@@ -19,7 +19,7 @@ export const makeList = [
     { value: "Chevrolet", label: "Chevrolet" },
     { value: "Chrysler", label: "Chrysler" },
     { value: "Kia", label: "Kia" },
-    { value: "Land", label: "Land" },
+    { value: "Land Rover", label: "Land Rover" },
 ];
 
 export const priceList = [

@@ -1,1 +1,15 @@
-
+.catalogList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 28px;
+  row-gap: 50px;
+}
+.catalogItem {
+  width: 274px;
+  height: 426px;
+  border-radius: 14px;
+  position: relative;
+  max-width: 274px;
+  min-height: 426px;
+}
