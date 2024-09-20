@@ -1,6 +1,10 @@
 import { PacmanLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars, selectIsLoading } from "../../redux/selectors";
+import {
+  selectCars,
+  selectFilteredCars,
+  selectIsLoading,
+} from "../../redux/selectors";
 import { useState } from "react";
 import { loadMoreRentCarsThunk } from "../../redux/operations";
 import DropFilter from "../../components/DropFilter/DropFilter";
@@ -19,9 +23,10 @@ const CarCatalogPage = () => {
   const isExistCars = cars.length === 0;
   const lastPage = cars.length % perPage !== 0;
   const lastPageFilter = isExistCars || lastPage;
-
+  const sumFiltCars = useSelector(selectFilteredCars);
   const buttonLoadMore = () => {
     const addPage = page + 1;
+    console.log(sumFiltCars);
 
     setPage(addPage);
     dispatch(loadMoreRentCarsThunk(addPage));
