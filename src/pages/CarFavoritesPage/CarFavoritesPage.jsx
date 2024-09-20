@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectFavoriteItems } from "../../redux/selectors";
 import CarModal from "../../components/CarModal/CarModal";
 import { selectIsModalOpen } from "../../redux/modal/selectorsModal";
-import s from "../CarCatalogPage/CarCatalogPage.module.css";
+import s from "./CarFavoritesPage.module.css";
 
 const CarFavoritesPage = () => {
   const favoriteItems = useSelector(selectFavoriteItems);
@@ -12,10 +12,10 @@ const CarFavoritesPage = () => {
   return (
     <div className={s.carPageWrapper}>
       <h1>Favorite rentals</h1>
-      <ul>
+      <ul className={s.catalogList}>
         {favoriteItems.map((car) => {
           return (
-            <li key={car.id}>
+            <li key={car.id} className={s.catalogItem}>
               <CatalogItem car={car} />
             </li>
           );

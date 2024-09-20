@@ -11,7 +11,6 @@ const Catalog = () => {
   useEffect(() => {
     dispatch(fetchRentCarsThunk());
   }, [dispatch]);
-  console.log(cars);
 
   return (
     <ul className={s.catalogList}>

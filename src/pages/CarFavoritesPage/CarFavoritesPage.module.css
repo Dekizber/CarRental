@@ -1,0 +1,23 @@
+.carPageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+}
+.catalogList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 28px;
+  row-gap: 50px;
+}
+.catalogItem {
+  width: 274px;
+  height: 426px;
+  border-radius: 14px;
+  position: relative;
+  max-width: 274px;
+  min-height: 426px;
+}

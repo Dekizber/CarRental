@@ -4,12 +4,14 @@
   justify-content: center;
   column-gap: 28px;
   row-gap: 50px;
+  margin-bottom: 16px;
 }
+
 .catalogItem {
-  width: 274px;
-  height: 426px;
-  border-radius: 14px;
+  background-color: rgb(241, 241, 241);
+  border-radius: 12px;
   position: relative;
   max-width: 274px;
   min-height: 426px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }

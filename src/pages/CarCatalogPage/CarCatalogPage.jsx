@@ -22,7 +22,6 @@ const CarCatalogPage = () => {
 
   const buttonLoadMore = () => {
     const addPage = page + 1;
-    console.log(addPage);
 
     setPage(addPage);
     dispatch(loadMoreRentCarsThunk(addPage));

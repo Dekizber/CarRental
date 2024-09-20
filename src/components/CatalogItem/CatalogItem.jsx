@@ -3,7 +3,7 @@ import { handleFavorite } from "../../redux/slice";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { selectFavoriteItems } from "../../redux/selectors";
 import { openModal } from "../../redux/modal/sliceModal";
-
+import s from "./CatalogItem.module.css";
 const CatalogItem = ({ car }) => {
   const dispatch = useDispatch();
 
@@ -24,26 +24,37 @@ const CatalogItem = ({ car }) => {
   );
 
   return (
-    <div>
-      <img src={car.img} alt={`${car.make} ${car.model}`} />
-      <div>
+    <div className={s.itemWrapper}>
+      <img
+        className={s.itemImg}
+        src={car.img}
+        alt={`${car.make} ${car.model}`}
+      />
+
+      <div className={s.carHeading}>
         <p>
-          {car.make} | {car.model} | {car.year}
+          {car.make} | <span className={s.modelSpan}>{car.model}</span> |{" "}
+          {car.year}
         </p>
         <p>{car.rentalPrice}</p>
       </div>
-      <div>
+      <div className={s.carInfo}>
         <p>
           {car.address.split(", ")[1]} | {car.address.split(", ")[2]} |{" "}
           {car.rentalCompany} | {car.type} | {car.model} |{" "}
           {formatMileage(car.mileage)} | {car.functionalities?.[1]}
-        </p>
+        </p>{" "}
       </div>
-      <button type="button" onClick={handleOpenModal}>
-        Learn more
+
+      <button className={s.favBtn} type="button" onClick={handleAddFavorite}>
+        {isFavorite ? (
+          <FaHeart className={s.like} />
+        ) : (
+          <FaRegHeart className={s.dislike} />
+        )}
       </button>
-      <button type="button" onClick={handleAddFavorite}>
-        {isFavorite ? <FaHeart /> : <FaRegHeart />}
+      <button className={s.learnBtn} type="button" onClick={handleOpenModal}>
+        Learn more
       </button>
     </div>
   );

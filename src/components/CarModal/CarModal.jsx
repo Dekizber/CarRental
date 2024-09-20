@@ -11,7 +11,7 @@ ReactModal.setAppElement("#root");
 
 const modalStyle = {
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(18, 20, 23, 0.5)",
   },
   content: {
     padding: "40px",
@@ -23,7 +23,7 @@ const modalStyle = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(255, 255, 255, 1)",
   },
 };
 
@@ -54,49 +54,71 @@ const CarModal = () => {
         <button className={s.closeButton} onClick={handleCloseModal}>
           <IoCloseSharp className={s.closeIcon} />
         </button>
-        <img
-          src={selectedCar.img}
-          alt={`${selectedCar.make} ${selectedCar.model}`}
-        />
-        <button type="button" onClick={handleAddFavorite}>
-          {isFavorite ? <FaHeart /> : <FaRegHeart />}
-        </button>
-        <h3>
-          {selectedCar.make} {selectedCar.model}, {selectedCar.year}
-        </h3>
-        <p>
-          {selectedCar.address} | Id: {selectedCar.id} | Year:{" "}
-          {selectedCar.year} | Type: {selectedCar.type} <br /> Fuel Consumption:{" "}
-          {selectedCar.fuelConsumption} | Engine size: {selectedCar.engineSize}
-        </p>
-        <p>{selectedCar.description}</p>
-        <p>Accessories and functionalities:</p>
-        <p>
-          {[...selectedCar.accessories.join(" | ")]}
-          <br />
-          {[...selectedCar.functionalities.join(" | ")]}
-        </p>
-        <p>Rental Conditions:</p>
-        <div>
-          {selectedCar.rentalConditions.split("\n").map((condition, index) => (
-            <div key={index}>
-              {condition
-                .split("")
-                .map((part, i) =>
-                  i === 1 ? <span key={i}>{part}</span> : part
-                )}
-            </div>
-          ))}
-          <p>
-            Mileage: <span>{formatMileage(selectedCar.mileage)}</span>
-          </p>
-          <p>
-            Price: <span>{selectedCar.rentalPrice}</span>
-          </p>
+        <div className={s.imgDescrWrapper}>
+          <img
+            className={s.modalImg}
+            src={selectedCar.img}
+            alt={`${selectedCar.make} ${selectedCar.model}`}
+          />
+          <div className={s.carHeadDescr}>
+            <h3>
+              {selectedCar.make}{" "}
+              <span className={s.modelSpan}>{selectedCar.model}</span>,{" "}
+              {selectedCar.year}
+            </h3>
+            <p>
+              {selectedCar.address.split(", ")[1]} |{" "}
+              {selectedCar.address.split(", ")[2]} | Id: {selectedCar.id} |
+              Year: {selectedCar.year} | Type: {selectedCar.type} <br /> Fuel
+              Consumption: {selectedCar.fuelConsumption} | Engine size:{" "}
+              {selectedCar.engineSize}
+            </p>
+            <p>{selectedCar.description}</p>
+          </div>
         </div>
-
-        <button>
-          <a href="tel:+380730000000">Rental car</a>
+        <div className={s.descrContainer}>
+          <p>Accessories and functionalities:</p>
+          <p>
+            {[...selectedCar.accessories.join(" | ")]}
+            <br />
+            {[...selectedCar.functionalities.join(" | ")]}
+          </p>
+          <p>Rental Conditions:</p>
+          <div>
+            {selectedCar.rentalConditions
+              .split("\n")
+              .map((condition, index) => (
+                <div key={index} className={s.reqCard}>
+                  {condition
+                    .split("")
+                    .map((part, i) =>
+                      i === 1 ? <span key={i}>{part}</span> : part
+                    )}
+                </div>
+              ))}
+            <div className={s.milePriceWrapper}>
+              <p>
+                Mileage:{" "}
+                <span className={s.modelSpan}>
+                  {formatMileage(selectedCar.mileage)}
+                </span>
+              </p>
+              <p>
+                Price:{" "}
+                <span className={s.modelSpan}>{selectedCar.rentalPrice}</span>
+              </p>
+            </div>
+          </div>
+          <a className={s.rentalBtn} href="tel:+380730000000">
+            Rental car
+          </a>
+        </div>
+        <button className={s.favBtn} type="button" onClick={handleAddFavorite}>
+          {isFavorite ? (
+            <FaHeart className={s.like} />
+          ) : (
+            <FaRegHeart className={s.dislike} />
+          )}
         </button>
       </ReactModal>
     </div>
