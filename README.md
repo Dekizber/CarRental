@@ -90,6 +90,6 @@ Contributions to improve the application are welcome. Please follow these steps:
 
 ## Contact
 
-[Your Name/Company Name] - [your email]
+[Vitalii Intelehator] - [dekizber@gmail.com]
 
-Project Link: [URL to your project repository]
+Project Link: https://car-rental-kohl-seven.vercel.app/
