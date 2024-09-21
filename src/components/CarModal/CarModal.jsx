@@ -7,6 +7,7 @@ import { handleFavorite } from "../../redux/slice";
 import { selectFavoriteItems } from "../../redux/selectors";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import s from "./CarModal.module.css";
+import { useEffect } from "react";
 ReactModal.setAppElement("#root");
 
 const modalStyle = {
@@ -37,6 +38,12 @@ const CarModal = () => {
   const isFavorite = useSelector(selectFavoriteItems).find(
     (item) => item.id === selectedCar.id
   );
+
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? "hidden" : "unset";
+    return () => (document.body.style.overflow = "unset");
+  }, [isModalOpen]);
+
   const handleCloseModal = () => {
     dispatch(closeModal());
   };

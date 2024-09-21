@@ -8,10 +8,8 @@
 }
 
 .catalogItem {
-  background-color: rgb(241, 241, 241);
   border-radius: 12px;
   position: relative;
   max-width: 274px;
   min-height: 426px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }

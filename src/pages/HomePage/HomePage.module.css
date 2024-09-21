@@ -1,0 +1,28 @@
+.homePageWrapper {
+  font-family: Manrope;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.headContainer {
+}
+.textWrapper {
+  text-align: center;
+  & p:nth-child(2) {
+    padding: 8px;
+  }
+  & p:nth-child(3) {
+    padding: 16px;
+  }
+}
+.imgHome {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vh;
+  border-radius: 16px;
+}

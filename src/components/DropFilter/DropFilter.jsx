@@ -2,7 +2,7 @@ import Select from "react-select";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { carFilter } from "../../redux/slice";
-import { makeList } from "../../makes_prices";
+import { makeList } from "../../makes";
 import s from "./DropFilter.module.css";
 
 const DropFilter = () => {

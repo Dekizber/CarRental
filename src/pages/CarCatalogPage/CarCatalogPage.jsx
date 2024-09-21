@@ -21,13 +21,11 @@ const CarCatalogPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const perPage = 12;
   const isExistCars = cars.length === 0;
-  const lastPage = cars.length % perPage !== 0;
+  const lastPage = cars.length % perPage > 0; // цей метод не буде працювати якщо кількість об'єктів з API буде кратна 12
   const lastPageFilter = isExistCars || lastPage;
-  const sumFiltCars = useSelector(selectFilteredCars);
+  const filterCars = useSelector(selectFilteredCars);
   const buttonLoadMore = () => {
     const addPage = page + 1;
-    console.log(sumFiltCars);
-
     setPage(addPage);
     dispatch(loadMoreRentCarsThunk(addPage));
   };
@@ -37,13 +35,10 @@ const CarCatalogPage = () => {
       <DropFilter />
       <div className={s.catalogContainer}>
         <Catalog />
-        {isLoading && <PacmanLoader color="#ffd600" />}
-
+        {isLoading && <PacmanLoader className={s.loaderIcon} color="#ffd600" />}
         {modalStatus && <CarModal />}
       </div>
-      {lastPageFilter ? (
-        <p>Sorry, no more cars to show you!</p>
-      ) : (
+      {!lastPageFilter && !isLoading && !filterCars.length && (
         <button className={s.loadMoreBtn} onClick={buttonLoadMore}>
           Load more
         </button>
